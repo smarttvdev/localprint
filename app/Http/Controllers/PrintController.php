@@ -84,7 +84,7 @@ class PrintController extends Controller
                 }
             }
             $printer->setEmphasis(true);
-            $printer->text(str_pad('',32,'-')."\n");
+            $printer->text(str_pad('',42,'-')."\n");
         }
         // End of Order Content Part
 
