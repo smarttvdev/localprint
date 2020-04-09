@@ -73,6 +73,12 @@ class PrintController extends Controller
     public function printXP58($connector,$order,$restaurant){
         // Logo and Restaurant Name, Address Part
 //            $profile = CapabilityProfile::load("default");
+        $remote_file_url = 'https://order.ohmani.com/public/Images/Icons/logo1578214810.png';
+        $local_file ='public/Images/logo1578214810.png';
+        $copy = copy( $remote_file_url, $local_file );
+
+
+
         $printer = new Printer($connector);
         $logo = EscposImage::load("https://order.ohmani.com/public/Images/Icons/logo1578214810.png", false);
 
