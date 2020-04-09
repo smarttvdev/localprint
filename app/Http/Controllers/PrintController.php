@@ -74,7 +74,7 @@ class PrintController extends Controller
         // Logo and Restaurant Name, Address Part
 //            $profile = CapabilityProfile::load("default");
         $printer = new Printer($connector);
-        $logo = EscposImage::load("public/Images/Icons/printer_logo.png", false);
+        $logo = EscposImage::load("https://order.ohmani.com/public/Images/Icons/logo1578214810.png", false);
 
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->bitImage($logo);
