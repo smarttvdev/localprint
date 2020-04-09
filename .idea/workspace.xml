@@ -4,6 +4,7 @@
     <list default="true" id="4a8ca59d-94eb-4718-aa85-05d9a97b13ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PrintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PrintController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +120,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/Work/Current Work/austian oh/CashierPos" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -157,7 +158,8 @@
       <workItem from="1575270858559" duration="397000" />
       <workItem from="1575319248603" duration="1312000" />
       <workItem from="1575332001620" duration="1387000" />
-      <workItem from="1586397940309" duration="3147000" />
+      <workItem from="1586397940309" duration="6591000" />
+      <workItem from="1586450120162" duration="1916000" />
     </task>
     <servers />
   </component>
@@ -178,6 +180,14 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="506" y="203" key="FileChooserDialogImpl" timestamp="1586450799783">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="506" y="203" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586450799783" />
+    <state x="733" y="187" width="731" height="674" key="find.popup" timestamp="1586407239052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="733" y="187" width="731" height="674" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586407239052" />
     <state x="638" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1586398212872">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

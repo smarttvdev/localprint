@@ -11,12 +11,10 @@ use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 
 
-
 class PrintController extends Controller
 {
     public function testPrint(Request $request){
         try {
-//            $connector = new WindowsPrintConnector("XP");
             $connector = new FilePrintConnector("/dev/usb/lp0");
             $printer = new Printer($connector);
             $printer -> text("Hello World!\n");
@@ -27,25 +25,39 @@ class PrintController extends Controller
             echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
         }
         return "success";
+
     }
     public function printOrder(Request $request){
-        $order=$request->input('order_item');
+        $input=$request->all();
+        $order=$input['order_item'];
+        $connection_type=$input['connection_type'];
+        $printer_detail=$input['printer_detail'];
+        $printer_type=$printer_detail->type;
         try {
-            $connector = new WindowsPrintConnector("receipt_printer");
-//	    $connector = new NetworkPrintConnector("192.168.1.18", 9100);
-            $this->printOperation($connector,$order);
-
+            //$connector = new NetworkPrintConnector("192.168.1.18", 9100);
+            if($connection_type=="offline"){
+                $path=$printer_detail->path;
+                $connector = new FilePrintConnector($path);
+                if($printer_type=="XP58"){
+                    $this->printXP58($connector,$order);
+                }
+            }
         } catch (Exception $e) {
-            echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+            return [
+                'status'=>'error',
+                'msg'=>"Couldn't print to this printer: " . $e -> getMessage() . "\n"
+            ];
         }
-        return "success";
+        return [
+            "success"=>'success'
+        ];
     }
     public function printOrderWithIp(Request $request){
         $order=$request->input('order_item');
         $printer_name=$request->input('printer_name');
         try {
             $connector = new WindowsPrintConnector($printer_name);
-            $this->printOperation($connector,$order);
+            $this->printXP58($connector,$order);
         } catch (Exception $e) {
             echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
         }
@@ -55,7 +67,7 @@ class PrintController extends Controller
 
 
 
-    public function printOperation($connector,$order){
+    public function printXP58($connector,$order){
         // Logo and Restaurant Name, Address Part
 //            $profile = CapabilityProfile::load("default");
         $printer = new Printer($connector);
