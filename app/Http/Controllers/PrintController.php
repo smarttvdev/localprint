@@ -33,14 +33,17 @@ class PrintController extends Controller
         $connection_type=$input['connection_type'];
         $printer_detail=$input['printer_detail'];
         $printer_type=$printer_detail['type'];
+        $restaurant=$input['restaurant'];
         try {
-            //$connector = new NetworkPrintConnector("192.168.1.18", 9100);
             if($connection_type=="offline"){
                 $path=$printer_detail['path'];
                 $connector = new FilePrintConnector($path);
                 if($printer_type=="XP58"){
-                    $this->printXP58($connector,$order);
+                    $this->printXP58($connector,$order,$restaurant);
                 }
+            }
+            else{
+                //$connector = new NetworkPrintConnector("192.168.1.18", 9100);
             }
         } catch (Exception $e) {
             return [
@@ -67,23 +70,22 @@ class PrintController extends Controller
 
 
 
-    public function printXP58($connector,$order){
+    public function printXP58($connector,$order,$restaurant){
         // Logo and Restaurant Name, Address Part
 //            $profile = CapabilityProfile::load("default");
         $printer = new Printer($connector);
+
         $logo = EscposImage::load("public/Images/Icons/printer_logo.png", false);
 
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->bitImage($logo);
-        $printer->setTextSize(2,2);
-        $printer ->setEmphasis(true);
+        $printer->setTextSize(1.5,1.5);
+        $printer ->setEmphasis(false);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
-        $printer->text("Bowlplay\n");
-        $location_name="Bowlplay AlignTon";
+        $printer->text("$restaurant[restaurant_name]\n");
         $printer ->setEmphasis(false);
         $printer->setTextSize(1,1);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
-        $printer->text("$location_name\n");
         // End Logo Part
 
         // The part of Order Id, Date, Customer Name Part //
