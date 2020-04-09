@@ -11,6 +11,16 @@ use Mike42\Escpos\CapabilityProfile;
 
 class PrintController extends Controller
 {
+    public function testPrint(Request $request){
+        try {
+            $connector = new WindowsPrintConnector("XP-58");
+
+
+        } catch (Exception $e) {
+            echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+        }
+        return "success";
+    }
     public function printOrder(Request $request){
         $order=$request->input('order_item');
         try {
@@ -22,6 +32,19 @@ class PrintController extends Controller
         }
         return "success";
     }
+    public function printOrderWithIp(Request $request){
+        $order=$request->input('order_item');
+        $printer_name=$request->input('printer_name');
+        try {
+            $connector = new WindowsPrintConnector($printer_name);
+            $this->printOperation($connector,$order);
+        } catch (Exception $e) {
+            echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+        }
+        return "success";
+    }
+
+
 
 
     public function printOperation($connector,$order){
