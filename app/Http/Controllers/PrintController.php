@@ -8,6 +8,7 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\CapabilityProfile;
 use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 
 
 
@@ -15,7 +16,8 @@ class PrintController extends Controller
 {
     public function testPrint(Request $request){
         try {
-            $connector = new WindowsPrintConnector("XP");
+//            $connector = new WindowsPrintConnector("XP");
+            $connector = new FilePrintConnector("/dev/usb/lp0");
             $printer = new Printer($connector);
             $printer -> text("Hello World!\n");
             $printer -> cut();
