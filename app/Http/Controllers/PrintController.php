@@ -82,6 +82,7 @@ class PrintController extends Controller
         else{
             return "WOOT! success to copy file...\n";
         }
+        $printer -> close();
 
 
 
