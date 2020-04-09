@@ -13,8 +13,11 @@ class PrintController extends Controller
 {
     public function testPrint(Request $request){
         try {
-            $connector = new WindowsPrintConnector("XP-58");
-
+            $connector = new WindowsPrintConnector("XP");
+            $printer = new Printer($connector);
+            $printer -> text("Hello World!\n");
+            $printer -> cut();
+            $printer -> close();
 
         } catch (Exception $e) {
             echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
