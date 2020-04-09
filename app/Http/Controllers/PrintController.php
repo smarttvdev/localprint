@@ -82,11 +82,12 @@ class PrintController extends Controller
         else{
             return "WOOT! success to copy file...\n";
         }
-        $printer -> close();
+
 
 
 
         $printer = new Printer($connector);
+        $printer->close();
         $logo = EscposImage::load("public/Images/Icons/printer_logo.png", false);
 
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
