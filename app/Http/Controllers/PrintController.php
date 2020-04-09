@@ -80,7 +80,7 @@ class PrintController extends Controller
 
 
         $printer = new Printer($connector);
-        $logo = EscposImage::load("https://order.ohmani.com/public/Images/Icons/logo1578214810.png", false);
+        $logo = EscposImage::load("public/Images/Icons/printer_logo.png", false);
 
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->bitImage($logo);
