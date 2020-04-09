@@ -73,21 +73,21 @@ class PrintController extends Controller
     public function printXP58($connector,$order,$restaurant){
         // Logo and Restaurant Name, Address Part
 //            $profile = CapabilityProfile::load("default");
-        $remote_file_url = 'https://order.ohmani.com/public/Images/Icons/logo1578214810.png';
-        $local_file =public_path('/Images/logo1578214810.png');
-        $copy = copy( $remote_file_url, $local_file );
-        if( !$copy ) {
-            return "Doh! failed to copy file...\n";
-        }
-        else{
-            return "WOOT! success to copy file...\n";
-        }
+//        $remote_file_url = 'https://order.ohmani.com/public/Images/Icons/logo1578214810.png';
+//        $local_file =public_path('/Images/logo1578214810.png');
+//        $copy = copy( $remote_file_url, $local_file );
+//        if( !$copy ) {
+//            return "Doh! failed to copy file...\n";
+//        }
+//        else{
+//            return "WOOT! success to copy file...\n";
+//        }
 
 
 
 
         $printer = new Printer($connector);
-        $printer->close();
+//        $printer->close();
         $logo = EscposImage::load("public/Images/Icons/printer_logo.png", false);
 
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
