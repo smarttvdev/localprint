@@ -74,7 +74,6 @@ class PrintController extends Controller
         // Logo and Restaurant Name, Address Part
 //            $profile = CapabilityProfile::load("default");
         $printer = new Printer($connector);
-
         $logo = EscposImage::load("public/Images/Icons/printer_logo.png", false);
 
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
@@ -83,6 +82,12 @@ class PrintController extends Controller
         $printer ->setEmphasis(false);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text("$restaurant[restaurant_name]\n");
+
+        $printer->setTextSize(1,1);
+        $printer->text("Email: $restaurant[email]\n");
+        $printer->text("Phone: $restaurant[phone_number]\n");
+
+
         $printer ->setEmphasis(false);
         $printer->setTextSize(1,1);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
