@@ -79,7 +79,7 @@ class PrintController extends Controller
 
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->bitImage($logo);
-        $printer->setTextSize(1.5,1.5);
+        $printer->setTextSize(2,2);
         $printer ->setEmphasis(false);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text("$restaurant[restaurant_name]\n");
