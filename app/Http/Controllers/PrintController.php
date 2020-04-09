@@ -84,7 +84,8 @@ class PrintController extends Controller
 //        }
 
         $file = 'https://order.ohmani.com/public/Images/Icons/logo1586467841.png';
-        $newfile = $_SERVER['DOCUMENT_ROOT'] . '/public/Images/yoyo.png';
+//        $newfile = $_SERVER['DOCUMENT_ROOT'] . '/public/Images/yoyo.png';
+        $newfile = public_path('/public/Images/yoyo.png');
         echo $newfile;
         if ( copy($file, $newfile) ) {
             echo "Copy success!";
