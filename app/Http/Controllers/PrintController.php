@@ -71,37 +71,34 @@ class PrintController extends Controller
 
 
     public function printXP58($connector,$order,$restaurant){
-        // Logo and Restaurant Name, Address Part
-//            $profile = CapabilityProfile::load("default");
-//        $remote_file_url = 'https://order.ohmani.com/public/Images/Icons/logo1578214810.png';
-//        $local_file =public_path('/Images/logo1578214810.png');
-//        $copy = copy( $remote_file_url, $local_file );
-//        if( !$copy ) {
-//            return "Doh! failed to copy file...\n";
-//        }
-//        else{
-//            return "WOOT! success to copy file...\n";
-//        }
-
-        $file = 'https://order.ohmani.com/public/Images/Icons/logo1586467841.png';
-//        $newfile = $_SERVER['DOCUMENT_ROOT'] . '/public/Images/yoyo.png';
-        $newfile = public_path('/public/Images/yoyo.png');
-        echo $newfile;
-        if ( copy($file, $newfile) ) {
-            echo "Copy success!";
-        }else{
-            echo "Copy failed.";
+        $copy=false;
+        if($restaurant['logo']!=""){
+            $copy=true;
+            $logo = $restaurant['logo'];
+            $temp_array=explode("/",$logo);
+            $file_name=$temp_array[count($temp_array)-1];
+            $file=public_path("/Images/Icons/$file_name");
+            if(!file_exists($file))
+            {
+                if(copy($logo, $file)){
+                    $copy=true;
+                }
+                else
+                    $copy=false;
+            }else
+                $copy=true;
         }
 
 
-
-
         $printer = new Printer($connector);
-//        $printer->close();
-        $logo = EscposImage::load("public/Images/Icons/printer_logo.png", false);
+        if($copy){
+            $logo = EscposImage::load("public/Images/Icons/$file_name", false);
+            $printer -> setJustification(Printer::JUSTIFY_CENTER);
+            $printer->bitImage($logo);
+        }
+        $printer->feed(1);
 
-        $printer -> setJustification(Printer::JUSTIFY_CENTER);
-        $printer->bitImage($logo);
+
         $printer->setTextSize(2,2);
         $printer ->setEmphasis(false);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
