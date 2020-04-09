@@ -83,6 +83,8 @@ class PrintController extends Controller
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text("$restaurant[restaurant_name]\n");
 
+
+        $printer -> setJustification(Printer::JUSTIFY_LEFT);
         $printer->setTextSize(1,1);
         $printer->text("Email: $restaurant[email]\n");
         $printer->text("Phone: $restaurant[phone_number]\n");
