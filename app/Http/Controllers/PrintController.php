@@ -84,7 +84,7 @@ class PrintController extends Controller
 //        }
 
         $file = 'http://3.bp.blogspot.com/-AGI4aY2SFaE/Tg8yoG3ijTI/AAAAAAAAA5k/nJB-mDhc8Ds/s400/rizal001.jpg';
-        $newfile = $_SERVER['DOCUMENT_ROOT'] . '/img/submitted/yoyo.jpg';
+        $newfile = $_SERVER['DOCUMENT_ROOT'] . 'public/Images/yoyo.jpg';
 
         if ( copy($file, $newfile) ) {
             echo "Copy success!";
