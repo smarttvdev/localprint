@@ -7,6 +7,8 @@ use Mike42\Escpos\Printer;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\CapabilityProfile;
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+
 
 
 class PrintController extends Controller
@@ -27,7 +29,8 @@ class PrintController extends Controller
     public function printOrder(Request $request){
         $order=$request->input('order_item');
         try {
-            $connector = new WindowsPrintConnector("XP-58");
+            $connector = new WindowsPrintConnector("receipt_printer");
+//	    $connector = new NetworkPrintConnector("192.168.1.18", 9100);
             $this->printOperation($connector,$order);
 
         } catch (Exception $e) {
@@ -127,7 +130,7 @@ class PrintController extends Controller
         $printer->text($result_text);
         $printer->setEmphasis(true);
         $printer->setTextSize(1,1);
-        $printer->text(str_pad('',32,'-')."\n");
+        $printer->text(str_pad('',42,'-')."\n");
 
 
 
@@ -146,7 +149,7 @@ class PrintController extends Controller
     }
 
 
-    public function getRowItem($item_count,$item_name,$item_price,$left_spacing=0,$total_width=32){
+    public function getRowItem($item_count,$item_name,$item_price,$left_spacing=0,$total_width=42){
         $left_text='';
         $left_text=str_pad($left_text,$left_spacing);
         $item_count=$left_text.$item_count."x ";
@@ -178,7 +181,7 @@ class PrintController extends Controller
         return $result;
     }
 
-    public function getPriceRowItem($item_label,$item_price,$multipler=1,$total_letter_count=26){
+    public function getPriceRowItem($item_label,$item_price,$multipler=1,$total_letter_count=32){
         $result='';
         $item_label=$item_label.":";
         $item_price="$".$item_price;
