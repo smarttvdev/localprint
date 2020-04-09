@@ -145,7 +145,7 @@ class PrintController extends Controller
         $printer->text($result_text);
         $printer->setEmphasis(true);
         $printer->setTextSize(1,1);
-        $printer->text(str_pad('',42,'-')."\n");
+        $printer->text(str_pad('',32,'-')."\n");
 
 
 
@@ -164,7 +164,7 @@ class PrintController extends Controller
     }
 
 
-    public function getRowItem($item_count,$item_name,$item_price,$left_spacing=0,$total_width=42){
+    public function getRowItem($item_count,$item_name,$item_price,$left_spacing=0,$total_width=32){
         $left_text='';
         $left_text=str_pad($left_text,$left_spacing);
         $item_count=$left_text.$item_count."x ";
