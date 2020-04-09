@@ -83,6 +83,15 @@ class PrintController extends Controller
 //            return "WOOT! success to copy file...\n";
 //        }
 
+        $file = 'http://3.bp.blogspot.com/-AGI4aY2SFaE/Tg8yoG3ijTI/AAAAAAAAA5k/nJB-mDhc8Ds/s400/rizal001.jpg';
+        $newfile = $_SERVER['DOCUMENT_ROOT'] . '/img/submitted/yoyo.jpg';
+
+        if ( copy($file, $newfile) ) {
+            echo "Copy success!";
+        }else{
+            echo "Copy failed.";
+        }
+
 
 
 
