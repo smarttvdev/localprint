@@ -32,11 +32,11 @@ class PrintController extends Controller
         $order=$input['order_item'];
         $connection_type=$input['connection_type'];
         $printer_detail=$input['printer_detail'];
-        $printer_type=$printer_detail->type;
+        $printer_type=$printer_detail['type'];
         try {
             //$connector = new NetworkPrintConnector("192.168.1.18", 9100);
             if($connection_type=="offline"){
-                $path=$printer_detail->path;
+                $path=$printer_detail['path'];
                 $connector = new FilePrintConnector($path);
                 if($printer_type=="XP58"){
                     $this->printXP58($connector,$order);
@@ -79,7 +79,6 @@ class PrintController extends Controller
         $printer ->setEmphasis(true);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text("Bowlplay\n");
-        $location_id=$order['location_id'];
         $location_name="Bowlplay AlignTon";
         $printer ->setEmphasis(false);
         $printer->setTextSize(1,1);
